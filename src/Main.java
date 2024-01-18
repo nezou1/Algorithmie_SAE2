@@ -7,11 +7,11 @@ public class Main {
     public static void main(String[] args) {
 
         // Question 1 : Tester le tri par insertion
-        testerTriInsertion(300000);
-        testerTriInsertion(10000);
+        //testerTriInsertion(300000);
+        //testerTriInsertion(1000000);
 
         // Question 2 : Tester les algorithmes de recherche
-        testerAlgorithmesRecherche();
+        //testerAlgorithmesRecherche();
 
         // Question 3 : Tester la recherche de la valeur la plus proche
         testerRecherchePlusProche();
@@ -29,7 +29,7 @@ public class Main {
     }
 
     public static void testerAlgorithmesRecherche() {
-        int[] tableauTrié = Sae2.générerTableauTriéParOrdreCroissant(1000000);
+        int[] tableauTrié = Sae2.générerTableauTriéParOrdreCroissant(300000);
         int valeurRecherche = 500000;
 
         long tempsDébutSimple = System.nanoTime();

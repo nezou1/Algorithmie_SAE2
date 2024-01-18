@@ -27,7 +27,7 @@ public class Algorithme {
         int droite = tableau.length - 1;
         boolean present = false;
 
-        while (gauche <= droite) {
+        while (gauche <= droite) { // on Verifie que la valeur de gauche reste inferieur a la valeur de droite
             int milieu = gauche + (droite - gauche) / 2;
 
             if (tableau[milieu] == valeur) {
@@ -45,11 +45,11 @@ public class Algorithme {
 
     public static int recherchePlusProcheValeur(int[] tableau, int valeur) {
         if (tableau.length == 0) {
-            System.out.println("Le tableau ne peut pas être vide.");
+            System.out.println("Erreur: Le tableau ne peut pas être vide.");
         }
 
         int plusProche = tableau[0]; // Initialiser avec la première valeur du tableau
-        int distanceMin = Math.abs(valeur - plusProche);
+        int distanceMin = Math.abs(valeur - plusProche); //On prend la valeur absolue de la distance entre les valeurs
 
         for (int i = 1; i < tableau.length; i++) {
             int distanceActuelle = Math.abs(valeur - tableau[i]);
