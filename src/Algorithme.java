@@ -13,30 +13,38 @@ public class Algorithme {
     }
 
     public static boolean rechercheSimple(int[] tableau, int valeur) {
-        for (int element : tableau) {
-            if (element == valeur) {
-                return true;
+
+        boolean present = false;
+        int i = 0;
+
+        while(i< tableau.length && !present){
+            if(tableau[i] == valeur){
+                present = true;
             }
+            i++;
         }
-        return false;
+        return present;
     }
 
 
     public static boolean rechercheDichotomique(int[] tableau, int valeur) {
-        int gauche = 0;
-        int droite = tableau.length - 1;
+        /* le tableau doit etre trié  */
+
+        int debut = 0;
+        int fin = tableau.length - 1;
         boolean present = false;
 
-        while (gauche <= droite) { // on Verifie que la valeur de gauche reste inferieur a la valeur de droite
-            int milieu = gauche + (droite - gauche) / 2;
+        while (debut <= fin) { // on Verifie que la valeur de debut reste inferieur a la valeur de fin
+            int milieu = debut + (fin - debut) / 2;
+            //System.out.println(milieu);
 
             if (tableau[milieu] == valeur) {
                 present=true;
                 return present; // La valeur a été trouvée,
             } else if (tableau[milieu] < valeur) {
-                gauche = milieu + 1; // La valeur est à droite du milieu
+                debut = milieu + 1; // La valeur est à fin du milieu
             } else {
-                droite = milieu - 1; // La valeur est à gauche du milieu
+                fin = milieu - 1; // La valeur est à debut du milieu
             }
         }
 
@@ -44,9 +52,14 @@ public class Algorithme {
     }
 
     public static int recherchePlusProcheValeur(int[] tableau, int valeur) {
+        /* le tableau doit etre non vide
+
         if (tableau.length == 0) {
-            System.out.println("Erreur: Le tableau ne peut pas être vide.");
+            System.out.println("Erreur: Le tableau ne peut pas être vide. ( en cas d'erreur l'algorithme affiche - 9999999");
+            return -9999999;
         }
+
+        */
 
         int plusProche = tableau[0]; // Initialiser avec la première valeur du tableau
         int distanceMin = Math.abs(valeur - plusProche); //On prend la valeur absolue de la distance entre les valeurs
@@ -66,15 +79,15 @@ public class Algorithme {
 
     public static int recherchePlusProcheValeurDico(int[] tableauTrié, int valeurRecherche) {
 
-        int gauche = 0;
-        int droite = tableauTrié.length - 1;
+        int debut = 0;
+        int fin = tableauTrié.length - 1;
 
         // Initialisation des indices de la valeur la plus proche
-        int indicePlusProche = gauche;
-        int distanceMin = Math.abs(valeurRecherche - tableauTrié[gauche]);
+        int indicePlusProche = debut;
+        int distanceMin = Math.abs(valeurRecherche - tableauTrié[debut]);
 
-        while (gauche <= droite) {
-            int milieu = gauche + (droite - gauche) / 2;
+        while (debut <= fin) {
+            int milieu = debut+(fin - debut) / 2;
 
             // Mise à jour de la valeur la plus proche
             int distanceActuelle = Math.abs(valeurRecherche - tableauTrié[milieu]);
@@ -85,9 +98,9 @@ public class Algorithme {
 
             // Ajuster les indices pour continuer la recherche
             if (tableauTrié[milieu] < valeurRecherche) {
-                gauche = milieu + 1;
+                debut = milieu + 1;
             } else {
-                droite = milieu - 1;
+                fin = milieu - 1;
             }
         }
 
@@ -96,7 +109,7 @@ public class Algorithme {
 
 
     public static void main(String[] args){
-        int[] tabTest = {5,2,8,6,9,2};
+        int[] tabTest = {5,2,8,6,9,2,5};
         triInsertion(tabTest);
 
         for(int var : tabTest){
@@ -110,6 +123,8 @@ public class Algorithme {
         System.out.println(recherchePlusProcheValeur(tabTest,0));
 
         System.out.println(recherchePlusProcheValeurDico(tabTest,7));
+        System.out.println(recherchePlusProcheValeurDico(tabTest,11));
+
 
 
 
